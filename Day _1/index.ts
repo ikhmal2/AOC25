@@ -63,5 +63,3 @@ input.forEach((rot) => {
 });
 
 console.log(`\nPassword: ${counter}`);
-
-// TODO: kena tambah extra check untuk nombor besar contoh kalau dia lebih dari 99 macam 600 takleh la tolak sekali je sebab nanti dapat 500 butoh pak hang
