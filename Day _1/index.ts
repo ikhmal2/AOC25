@@ -1,7 +1,5 @@
 import { input } from "./input";
 
-const dial: number[] = Array.from({ length: 99 }, (val, idx) => idx + 1);
-dial.unshift(0);
 let currentPos = 50;
 let counter = 0;
 
@@ -10,22 +8,25 @@ function addCounter() {
   console.log(`\nCounter: ${counter}\n`);
 }
 
-function moreThan100(): number {
+function checkWithin100(): number {
   let tempPos = currentPos;
-  do {
-    tempPos = tempPos - 100;
-  } while (tempPos > 99);
 
-  return tempPos;
-}
+  if (tempPos > 99) {
+    do {
+      tempPos = tempPos - 100;
+    } while (tempPos > 99);
 
-function lessThan100(): number {
-  let tempPos = currentPos;
-  do {
-    tempPos = tempPos + 100;
-  } while (tempPos < 0);
+    return tempPos;
+  } else if (tempPos < 0) {
+    let tempPos = currentPos;
+    do {
+      tempPos = tempPos + 100;
+    } while (tempPos < 0);
 
-  return tempPos;
+    return tempPos;
+  } else {
+    return 0;
+  }
 }
 
 function rotate(rotation: string) {
@@ -36,7 +37,7 @@ function rotate(rotation: string) {
     if (currentPos - clicks < 0) {
       currentPos = 100 + (currentPos - clicks);
       if (currentPos < 0) {
-        currentPos = lessThan100();
+        currentPos = checkWithin100();
       }
     } else {
       currentPos = currentPos - clicks;
@@ -46,7 +47,7 @@ function rotate(rotation: string) {
       currentPos = currentPos + clicks - 100;
 
       if (currentPos > 99) {
-        currentPos = moreThan100();
+        currentPos = checkWithin100();
       }
     } else {
       currentPos = currentPos + clicks;
