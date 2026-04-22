@@ -2,11 +2,6 @@ import { input } from "./input";
 let currentPos = 50;
 let counter = 0;
 
-function addCounter() {
-  counter++;
-  console.log(`====Counter: ${counter}==== \n`);
-}
-
 function rotateWheel(rotation: string) {
   const click = Number(rotation.substring(1));
   for (let i = 0; i < click; i++) {
@@ -23,11 +18,9 @@ function rotateWheel(rotation: string) {
     }
 
     if (currentPos === 0) {
-      addCounter();
+      counter++;
     }
   }
-
-  console.log(currentPos);
 }
 
 input.forEach((rot) => {
