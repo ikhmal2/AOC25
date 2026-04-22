@@ -4607,7 +4607,6 @@ export const input = [
 
 // export const input = [
 //   "L68",
-//   "L666",
 //   "L30",
 //   "R48",
 //   "L5",
@@ -4617,5 +4616,4 @@ export const input = [
 //   "L99",
 //   "R14",
 //   "L82",
-//   "R662",
 // ];
