@@ -5,30 +5,23 @@ const IdPairs: string[] = input.replace(/(\r\n|\n|\r)/gm, "").split(",");
 
 let invalidIDs = 0;
 
-for (let i = 0; i < IdPairs.length; i++) {
-  const [x, y] = IdPairs[i].split("-");
+function findInvalidSequence() {
+  for (let i = 0; i < IdPairs.length; i++) {
+    const [x, y] = IdPairs[i].split("-");
 
-  const regExp = /^0[0-9].*$/;
+    const regExp = /^(.+?)( ?\1)+$/;
 
-  if (regExp.test(x) || regExp.test(y)) {
-    invalidIDs++;
-  }
+    const ID1 = Number(x);
+    const ID2 = Number(y);
 
-  const ID1 = Number(x);
-  const ID2 = Number(y);
-
-  for (let i = ID1; i <= ID2; i++) {
-    const currentID = i.toString();
-    if (currentID.length % 2 === 0) {
-      const x = currentID.slice(0, currentID.length / 2);
-      const y = currentID.slice(currentID.length / 2);
-
-      if (x === y) {
-        const invalidID = Number(x.concat(y));
-        invalidIDs += invalidID;
+    for (let i = ID1; i <= ID2; i++) {
+      const currentID = i.toString();
+      if (regExp.test(currentID)) {
+        invalidIDs += i;
       }
     }
   }
+  console.log(invalidIDs);
 }
 
-console.log(invalidIDs);
+findInvalidSequence();
